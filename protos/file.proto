@@ -9,13 +9,13 @@ message Empty {}
 
 message File {
     string content = 1;
-    string userName = 2;
-    string folderName = 3;
+    string userId = 2;
+    string folderId = 3;
 }
 
 message FileMoveRequest {
     string fileId = 1;
-    string destFolderName = 2;
-    string currFolderName = 3;
-    string userName = 4;
+    string destFolderId = 2;
+    string currFolderId = 3;
+    string userId = 4;
 }

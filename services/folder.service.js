@@ -10,7 +10,7 @@ class FolderService {
       .then((folderImage) => {
         console.log("\n>> Created Folder:\n", folderImage);
         return userRepo.findByIdAndUpdateFolder(
-          folderRequest.userName,
+          +folderRequest.userId,
           folderImage
         );
       });
@@ -20,7 +20,7 @@ class FolderService {
   async getFolderDetails(_, callback) {
     var request = _.request;
 
-    var folder = await folderRepo.getFolderDetails(request.folderName);
+    var folder = await folderRepo.getFolderDetails(+request.folderId);
     console.log(folder);
     callback(null, folder);
   }

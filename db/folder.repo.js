@@ -1,8 +1,8 @@
 const file = require("../models/file");
 const Folder = require("../models/folder");
 
-const getFolderDetails = (folderName) => {
-  return Folder.findOne({ folderName: folderName }).populate({
+const getFolderDetails = (folderId) => {
+  return Folder.findOne({ folderId: folderId }).populate({
     path: "files",
     select: "content",
   });
@@ -12,9 +12,9 @@ const createFolder = (folderWithUserName) => {
   return Folder.create({ folderName: folderWithUserName.folderName });
 };
 
-const findByIdAndUpdateFile = (folderName, fileImage) => {
+const findByIdAndUpdateFile = (folderId, fileImage) => {
   return Folder.findOneAndUpdate(
-    { folderName: folderName },
+    { folderId: folderId },
     {
       $push: {
         files: fileImage,
@@ -24,9 +24,9 @@ const findByIdAndUpdateFile = (folderName, fileImage) => {
   );
 };
 
-const removeFile = (currFolderName, fileImage) => {
-  Folder.update(
-    { folderName: currFolderName },
+const removeFile = (currFolderId, fileImage) => {
+  Folder.findOneAndUpdate(
+    { folderId: currFolderId },
     {
       $pull: {
         files: fileImage,
@@ -36,22 +36,9 @@ const removeFile = (currFolderName, fileImage) => {
   );
 };
 
-const moveFile = (destFolderName, fileImage) => {
-  return Folder.findOneAndUpdate(
-    { folderName: destFolderName },
-    {
-      $push: {
-        files: fileImage,
-      },
-    },
-    { new: true, useFindAndModify: false }
-  );
-};
-
 module.exports = {
   createFolder,
   removeFile,
-  moveFile,
   getFolderDetails,
   findByIdAndUpdateFile,
 };

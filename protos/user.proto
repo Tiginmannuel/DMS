@@ -5,20 +5,23 @@ service UserService {
 }
 
 message User {
-    string name = 1;
+    string userId = 1;
 }
 
 message Folder {
     string _id = 1;
-    string folderName = 2;
+    string folderId = 2;
+    string folderName = 3;
 }
 message File {
     string _id = 1;
-    string content = 2;
+    string fileId = 2;
+    string content = 3;
 }
 
 message UserRespone {
-    string name = 1;
-    repeated Folder folders = 2;
-    repeated File files = 3;
+    string userId = 1;
+    string name = 2;
+    repeated Folder folders = 3;
+    repeated File files = 4;
 }

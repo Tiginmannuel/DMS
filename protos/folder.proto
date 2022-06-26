@@ -9,18 +9,20 @@ message Empty {}
 
 message FolderWithUser {
     string folderName = 1;
-    string userName = 2;
+    string userId = 2;
 }
 
 message Folder {
-    string folderName = 1;
+    string folderId = 1;
 }
 
 message File {
-    string content = 1;
+    string fileId = 1;
+    string content = 2;
 }
 
 message FolderResponse {
-    string folderName = 1;
-    repeated File files = 2;
+    string folderId = 1;
+    string folderName = 2;
+    repeated File files = 3;
 }

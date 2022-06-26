@@ -5,10 +5,10 @@ const createFile = (fileRequest) => {
 };
 
 const getFile = (fileId) => {
-  return File.findOne({ _id: fileId });
+  return File.findOne({ fileId: fileId });
 };
 
 module.exports = {
   createFile,
-  getFile
+  getFile,
 };

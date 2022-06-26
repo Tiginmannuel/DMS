@@ -1,12 +1,12 @@
 const User = require("../models/user");
 
-const getUserDetails = (userName) => {
-  return User.findOne({ name: userName }).populate(["folders", "files"]);
+const getUserDetails = (userId) => {
+  return User.findOne({ userId: userId }).populate(["folders", "files"]);
 };
 
-const findByIdAndUpdateFolder = (userName, folderImage) => {
+const findByIdAndUpdateFolder = (userId, folderImage) => {
   return User.findOneAndUpdate(
-    { name: userName },
+    { userId: userId },
     {
       $push: {
         folders: folderImage,
@@ -16,9 +16,9 @@ const findByIdAndUpdateFolder = (userName, folderImage) => {
   );
 };
 
-const findByIdAndUpdateFile = (userName, fileImage) => {
+const findByIdAndUpdateFile = (userId, fileImage) => {
   return User.findOneAndUpdate(
-    { name: userName },
+    { userId: userId },
     {
       $push: {
         files: fileImage,
@@ -28,9 +28,9 @@ const findByIdAndUpdateFile = (userName, fileImage) => {
   );
 };
 
-const removeFile = (userName, fileImage) => {
+const removeFile = (userId, fileImage) => {
   User.findOneAndUpdate(
-    { name: userName },
+    { userId: userId },
     {
       $pull: {
         files: fileImage,

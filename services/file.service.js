@@ -9,13 +9,16 @@ class FileService {
     var newFile = fileRepo.createFile(fileRequest).then((fileImage) => {
       console.log("\n>> Created File:\n", fileImage);
 
-      if (fileRequest.folderName && fileRequest.folderName.length > 0) {
+      if (
+        fileRequest.folderId !== null &&
+        fileRequest.folderId !== undefined
+      ) {
         return folderRepo.findByIdAndUpdateFile(
-          fileRequest.folderName,
+          +fileRequest.folderId,
           fileImage
         );
       } else {
-        return userRepo.findByIdAndUpdateFile(fileRequest.userName, fileImage);
+        return userRepo.findByIdAndUpdateFile(+fileRequest.userId, fileImage);
       }
     });
     callback(null, newFile);
@@ -23,13 +26,16 @@ class FileService {
 
   async moveFile(_, callback) {
     var fileRequest = _.request;
-    var fileImage = await fileRepo.getFile(fileRequest.fileId);
-    if (fileRequest.currFolderName && fileRequest.currFolderName.length > 0) {
-      folderRepo.removeFile(fileRequest.currFolderName, fileImage);
+    var fileImage = await fileRepo.getFile(+fileRequest.fileId);
+    if (
+      fileRequest.currFolderId != null &&
+      fileRequest.currFolderId != undefined
+    ) {
+      folderRepo.removeFile(+fileRequest.currFolderId, fileImage);
     } else {
-      userRepo.removeFile(fileRequest.userName, fileImage);
+      userRepo.removeFile(+fileRequest.userId, fileImage);
     }
-    folderRepo.moveFile(fileRequest.destFolderName, fileImage);
+    folderRepo.findByIdAndUpdateFile(+fileRequest.destFolderId, fileImage);
     callback(null, {});
   }
 }
