@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+service FileService {
+    rpc createFile(File) returns (File) {}
+    rpc moveFile(FileMoveRequest) returns (File) {}
+}
+
+message Empty {}
+
+message File {
+    string content = 1;
+    string userName = 2;
+    string folderName = 3;
+}
+
+message FileMoveRequest {
+    string fileId = 1;
+    string destFolderName = 2;
+    string currFolderName = 3;
+    string userName = 4;
+}

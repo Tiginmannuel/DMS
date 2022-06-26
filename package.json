@@ -1,0 +1,21 @@
+{
+  "name": "zoominfobe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tigin <tigin@carestack.com> (https://nexus.infra.aws.carestack.com/repository/npm/)",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.6.13",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "grpc": "^1.24.11",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.4.0",
+    "uuid": "^8.3.2"
+  }
+}

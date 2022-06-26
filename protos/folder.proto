@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+service FolderService {
+    rpc createFolder(FolderWithUser) returns (Empty) {}
+    rpc getFolderDetails(Folder) returns (FolderResponse) {}
+}
+
+message Empty {}
+
+message FolderWithUser {
+    string folderName = 1;
+    string userName = 2;
+}
+
+message Folder {
+    string folderName = 1;
+}
+
+message File {
+    string content = 1;
+}
+
+message FolderResponse {
+    string folderName = 1;
+    repeated File files = 2;
+}

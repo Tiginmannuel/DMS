@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+service UserService {
+    rpc getUserDetails(User) returns (UserRespone) {}
+}
+
+message User {
+    string name = 1;
+}
+
+message Folder {
+    string _id = 1;
+    string folderName = 2;
+}
+message File {
+    string _id = 1;
+    string content = 2;
+}
+
+message UserRespone {
+    string name = 1;
+    repeated Folder folders = 2;
+    repeated File files = 3;
+}
